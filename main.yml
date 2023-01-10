@@ -1,0 +1,58 @@
+---
+- name: main playbook
+  hosts: all
+  gather_facts: no
+  become_user: ubuntu
+  become: yes
+  become_method: sudo
+  tasks:
+    # - name: Set authorized key for remote user
+    #   ansible.posix.authorized_key:
+    #     user: ubuntu
+    #     state: present
+    #     key: "{{ lookup('file', lookup('env','HOME') + '/.ssh/id_rsa.pub') }}"
+    
+    # - name: update and upgrade packages
+    #   shell: sudo apt-get update && sudo apt-get upgrade -y
+    
+    # - name: install nginx
+    #   shell: sudo apt-get install nginx -y
+
+    # - name: install php8.1-fpm
+    #   shell: sudo apt-get install php8.1-fpm -y
+
+    # - name: change modification of sshd_config file
+    #   shell: sudo chmod -R 0775 /etc/ssh/sshd_config
+    
+    # - name: change project-file's permission
+    #   shell: sudo chmod -R 0777 /var/www/html/
+
+    # - name: create project-file
+    #   copy:
+    #    src: /home/ubuntu/ansible/index.php
+    #    dest: /var/www/html/index.php
+    #   become: yes
+
+    # - name: start nginx
+    #   shell: sudo systemctl start nginx
+
+    # - name: grant file permission to write to sites-available folder
+    #   shell: sudo chmod -R 0777 /etc/nginx/sites-available
+
+    # - name: setup sites-available configuration
+    #   copy:
+    #    src: /home/ubuntu/ansible/sites-cfg
+    #    dest: /etc/nginx/sites-available/sites-cfg
+    #   become: yes
+      
+    # - name: link sites-avail to sites-enab folder
+    #   shell: sudo ln -s /etc/nginx/sites-available/sites-cfg /etc/nginx/sites-enabled/sites-cfg
+
+    # - name: move default sites-available file
+    #   shell: sudo mv /etc/nginx/sites-available/default /home/ubuntu/default_sites-avail-file
+
+    # - name: remove default sites-enabled file
+    #   shell: sudo rm /etc/nginx/sites-enabled/default
+
+    - name: restart nginx
+      shell: sudo systemctl restart nginx
