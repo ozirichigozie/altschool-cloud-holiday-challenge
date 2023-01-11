@@ -1,0 +1,10 @@
+---
+- name: main playbook
+  hosts: all
+  gather_facts: no
+  become_user: ubuntu
+  become: yes
+  become_method: sudo
+  tasks:
+      - name: restart nginx
+        shell: sudo systemctl restart nginx
